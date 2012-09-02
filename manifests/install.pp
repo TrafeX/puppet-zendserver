@@ -10,17 +10,11 @@ class zendserver::install {
         key_url   => 'http://repos.zend.com/zend.key'
     }
 
-    # This block seems to have no effect, and still to require this to be run twice?
-    exec { "apt-get update":
-        command => "/usr/bin/apt-get update",
-    }
-
     package { "zend-server" :
         name => "zend-server-php-${params::php_version}",
         ensure => present,
         require => [
             Apt::Repository["zend-server"],
-            Exec["apt-get update"],
         ],
     }
 
