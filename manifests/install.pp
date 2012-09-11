@@ -10,8 +10,10 @@ class zendserver::install {
         key_url   => 'http://repos.zend.com/zend.key'
     }
 
+$php_version = 5.3
+
     package { "zend-server" :
-        name => "zend-server-php-${params::php_version}",
+        name => "zend-server-php-${php_version}",
         ensure => present,
         require => [
             Apt::Repository["zend-server"],
