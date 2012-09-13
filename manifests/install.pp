@@ -8,7 +8,6 @@ class zendserver::install {
         repository=> 'non-free',
         key       => true,
         key_url   => 'http://repos.zend.com/zend.key',
-        notify    => Exec["aptget_update"],
     }
 
 $php_version = 5.3
@@ -18,6 +17,7 @@ $php_version = 5.3
         ensure => present,
         require => [
             Apt::Repository["zend-server"],
+            Exec["aptget_update"],
         ],
     }
 
