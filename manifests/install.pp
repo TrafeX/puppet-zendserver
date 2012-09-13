@@ -30,15 +30,23 @@ $php_version = 5.3
     # Bind mount /usr/local/zend/bin on /usr/bin
     #
 
-    mount { '/usr/bin':
-        device  => '/usr/local/zend/bin/',
-        ensure  => mounted,
-        fstype  => 'none',
-        options => 'rw,bind,defaults',
-        atboot => true,
-        require => [
-            Package["zend-server"]
-        ]
+#    mount { '/usr/bin':
+#        device  => '/usr/local/zend/bin/',
+#        ensure  => mounted,
+#        fstype  => 'none',
+#        options => 'rw,bind,defaults',
+#        atboot => true,
+#        require => [
+#            Package["zend-server"]
+#        ]
+#    }
+
+    file { "zend-path" :
+        path   => "/etc/profile.d/zend.sh",
+        source => "puppet:///modules/zendserver/zend.sh",
+        owner  => "root",
+        group  => "root",
+        mode   => 0644,
     }
 
     file { "/var/log/zend/zendserver":
