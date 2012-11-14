@@ -5,6 +5,6 @@ class zendserver::service {
         hasstatus => true,
         hasrestart => true,
         enable => "true",
-        require => Class["zendserver::install"],
+        require => Class["zendserver"],
     }
 }
